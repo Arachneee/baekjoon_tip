@@ -32,3 +32,32 @@ def solve(arr):
         sum +=heap_min[0]
     return sum
 ```
+
+```python
+def back(string):
+    stack = []
+    cal = []
+    first = {'*' : 1, '/':1, '+':2, '-':2}
+    
+    for i in string:
+        if i>= 'A' and i <= 'Z':
+            stack.append(i)
+
+        elif i == '(':
+            cal.append(i)
+        elif i == ')':
+            while cal and cal[-1] != '(':
+                stack.append(cal.pop(-1))
+            cal.pop(-1)
+        elif cal and (first[i] == 1):
+            while cal and (fisrt[i] == first[cal[-1]]):
+                stack.append(cal.pop(-1))
+            cal.append(i)
+        elif cal and (first[i] == 2):
+            while cal and (cal[-1] != '('):
+                stack.append(cal.pop(-1))
+            cal.append(i)
+    while cal:
+        stack.append(cal.pop(-1))
+    print(''.join(stack))
+```
